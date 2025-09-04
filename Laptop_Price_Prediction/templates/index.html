@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+   
+        .button-effect {
+            padding: 10px 18px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #4da6ff, #6a9cff);
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 0 15px 5px rgba(77, 166, 255, 0.7);
+            text-shadow: 0 0 8px #ffffff;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .button-effect:hover {
+            background: linear-gradient(135deg, #6a9cff, #4da6ff);
+            box-shadow: 0 0 25px 8px rgba(77, 166, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .button-effect:active {
+            transform: translateY(0);
+            box-shadow: 0 0 5px 2px rgba(77, 166, 255, 0.5);
+        }
+
+        .button-effect:focus {
+            outline: none;
+            box-shadow: 0 0 25px 8px rgba(77, 166, 255, 0.9);
+        }
+
+        .contact-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 12px 28px;
+        }
+
+        .predict-button {
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+
+    
+        .typing {
+            border-right: 3px solid #4da6ff;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+ 
+        .dynamic-title {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+    
+        <a href="{{ url_for('contact') }}" class="contact-button button-effect">Contact Us</a>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1><span id="dynamic-title" class="typing dynamic-title"></span></h1>
+        </div>
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="Company">Company</label>
+                <select id="Company">
+                    <option>Acer</option>
+                    <option>Dell</option>
+                    <option>HP</option>
+                    <option>Apple</option>
+                    <option>Lenovo</option>
+                    <option>Asus</option>
+                    <option>MSI</option>
+                    <option>Toshiba</option>
+                    <option>Samsung</option>
+                    <option>Mediacom</option>
+                    <option>Razer</option>
+                    <option>Microsoft</option>
+                    <option>Vero</option>
+                    <option>Xiaomi</option>
+                    <option>Chuwi</option>
+                    <option>Fujitsu</option>
+                    <option>Google</option>
+                    <option>LG</option>
+                    <option>Huawei</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="TypeName">TypeName</label>
+                <select id="TypeName">
+                    <option>2 in 1 Convertible</option>
+                    <option>Notebook</option>
+                    <option>Ultrabook</option>
+                    <option>Gaming</option>
+                    <option>Workstation</option>
+                    <option>Netbook</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Ram">Ram</label>
+                <select id="Ram">
+                    <option>2</option>
+                    <option>4</option>
+                    <option>8</option>
+                    <option>16</option>
+                    <option>32</option>
+                    <option>64</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="OpSys">OS</label>
+                <select id="OpSys">
+                    <option>Linux</option>
+                    <option>Windows</option>
+                    <option>mac</option>
+                    <option>Chrome OS</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="IPS">Ips</label>
+                <select id="IPS">
+                    <option>1</option>
+                    <option>0</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Touchscreen">Touchscreen</label>
+                <select id="Touchscreen">
+                    <option>1</option>
+                    <option>0</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Resolution_Type">Resolution Type</label>
+                <select id="Resolution_Type">
+                    <option>4K</option>
+                    <option>Full HD</option>
+                    <option>HD</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Storage_Type">Storage Type</label>
+                <select id="Storage_Type">
+                    <option>SSD</option>
+                    <option>HDD</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="GPU_Brand">GPU brand</label>
+                <select id="GPU_Brand">
+                    <option>Intel</option>
+                    <option>Nvidia</option>
+                    <option>AMD</option>
+                    <option>ARM</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="CPU_Brand">CPU brand</label>
+                <select id="CPU_Brand">
+                    <option>Intel Core i3</option>
+                    <option>Intel Core i5</option>
+                    <option>Intel Core i7</option>
+                    <option>AMD</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Memory_GB">Memory_GB</label>
+                <select id="Memory_GB">
+                    <option>32</option>
+                    <option>64</option>
+                    <option>128</option>
+                    <option>256</option>
+                    <option>512</option>
+                    <option>1024</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Weight">Weight (kg)</label>
+                <input type="text" id="Weight" placeholder="Example: 1.5">
+            </div>
+            <div class="form-group full-width">
+                <label for="Inches">Screen Size (inches)</label>
+                <input type="text" id="Inches" placeholder="Example: 13.6">
+            </div>
+        </div>
+
+
+        <button class="predict-button button-effect">Predict Price</button>
+
+        <div id="prediction-result"></div>
+    </div>
+
+    <script>
+      
+        const text = "Laptop Price Prediction 💻";
+        let index = 0;
+        const speed = 100;
+        const dynamicTitle = document.getElementById("dynamic-title");
+
+        function typeEffect() {
+            if (index < text.length) {
+                dynamicTitle.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeEffect, speed);
+            }
+        }
+        window.onload = typeEffect;
+
+      
+        const predictButton = document.querySelector('.predict-button');
+        const predictionResultElement = document.getElementById('prediction-result');
+
+        predictButton.addEventListener('click', async () => {
+            const data = {
+                Company: document.getElementById('Company').value,
+                TypeName: document.getElementById('TypeName').value,
+                Ram: document.getElementById('Ram').value,
+                OpSys: document.getElementById('OpSys').value,
+                IPS: document.getElementById('IPS').value,
+                Touchscreen: document.getElementById('Touchscreen').value,
+                Resolution_Type: document.getElementById('Resolution_Type').value,
+                Storage_Type: document.getElementById('Storage_Type').value,
+                GPU_Brand: document.getElementById('GPU_Brand').value,
+                CPU_Brand: document.getElementById('CPU_Brand').value,
+                Memory_GB: document.getElementById('Memory_GB').value,
+                Weight: document.getElementById('Weight').value,
+                Inches: document.getElementById('Inches').value
+            };
+
+            predictionResultElement.textContent = '';
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    const roundedPrediction = Math.round(result.prediction * 56.54);
+                    predictionResultElement.innerHTML =
+                        `<p style="font-size:28px; font-weight:bold; margin-top:20px; text-align:center;">
+                        The predicted price is: LE ${roundedPrediction}
+                        </p>`;
+                } else {
+                    predictionResultElement.innerHTML =
+                        `<p style="font-size:20px; color:red; margin-top:20px; text-align:center;">
+                        Error: ${result.error}
+                        </p>`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                predictionResultElement.textContent =
+                    'Failed to connect to the server. Please make sure the server is running.';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: black;
+            text-align: center;
+            padding: 50px;
+            position: relative;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .links a {
+            font-size: 40px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .links a:hover {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+
+        .linkedin {
+            color: #0077b5;
+        }
+
+        .github {
+            color: #fff;
+        }
+
+        .email {
+            color: #d44638;
+        }
+
+
+        .button-effect {
+            padding: 12px 28px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #4da6ff, #6a9cff);
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 0 15px 5px rgba(77, 166, 255, 0.7);
+            text-shadow: 0 0 8px #ffffff;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .button-effect:hover {
+            background: linear-gradient(135deg, #6a9cff, #4da6ff);
+            box-shadow: 0 0 25px 8px rgba(77, 166, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .button-effect:active {
+            transform: translateY(0);
+            box-shadow: 0 0 5px 2px rgba(77, 166, 255, 0.5);
+        }
+
+        .button-effect:focus {
+            outline: none;
+            box-shadow: 0 0 25px 8px rgba(77, 166, 255, 0.9);
+        }
+
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+
+        .typing {
+            border-right: 3px solid #4da6ff;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="/" class="back-button button-effect">Back</a>
+
+
+    <h1><span id="contact-title" class="typing"></span></h1>
+
+    <div class="links">
+        <a class="linkedin" href="https://www.linkedin.com/in/minaibrahim2/" target="_blank">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a class="github" href="https://github.com/Meda12623" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+        <a class="email" href="mailto:minaibrahim365@gmail.com">
+            <i class="fas fa-envelope"></i>
+        </a>
+    </div>
+
+    <script>
+        
+        const text = "Contact Me";
+        let index = 0;
+        const speed = 120;
+        const contactTitle = document.getElementById("contact-title");
+
+        function typeEffect() {
+            if (index < text.length) {
+                contactTitle.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeEffect, speed);
+            }
+        }
+
+        window.onload = typeEffect;
+    </script>
+</body>
+
+</html>
